@@ -2,8 +2,7 @@
 
 ## Description
 
-I built an API for a social media application. Users can post thoughts, as well as update and delete them. Also, the users are able to
-create, update, and delete users from the database. Additionally, the app can show the list of all the users and thoughts stored in the database. One of the features is that, the app successfully creates and deletes reactions to thoughts, as well as creating and deleting friends to a user's friend list. It's important to say that, the API deletes a user's associated thoughts when the user is deleted.
+I built an API for a social media application. Users can post thoughts, as well as update posts and delete them. Also, the users are able to create, update, and delete users from the database. Additionally, the app can show the list of all the users and thoughts stored in the MongoDB database. One of the features incorporated is that, the app successfully creates and deletes reactions to thoughts, as well as the ability to create and delete friends to a user's friend list. It's important to say that, the API deletes a user's associated thoughts when the user is deleted.
 
 
 Deployed application url: 
