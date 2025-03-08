@@ -13,10 +13,10 @@ export const getAllUsers = async (_req: Request, res: Response) => {
 
         const UserObj = {
             users,
-            headCount: await headCount(),
+            headCount: await headCount(), //Should I get rid off this?
         }
 
-        res.json(userObj);
+        res.json(UserObj);
     } catch (error: any) {
         res.status(500).json({
             message: error.message
@@ -32,7 +32,7 @@ export const getAllUsers = async (_req: Request, res: Response) => {
 export const getUserById = async (req: Request, res: Response) => {
     const { UserId } = req.params;
     try {
-        const user = await User.findById(userId);
+        const user = await User.findById(UserId);
         if (user) {
             res.json({ user });
         } else {

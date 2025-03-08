@@ -4,8 +4,37 @@ interface IThought extends Document {
     thoughtText: string,
     createdAt: Date,
     username: string,
-    //reactions: Array of nested documents created with the reactionSchema
+    reactions: Types.DocumentArray<typeof reactionSchema>,
 }
+
+const reactionSchema = new Schema(
+    {
+        reactionId: {
+            type: Types.ObjectId,
+            default: () => new Types.ObjectId(),
+        },
+        reactionBody: {
+            type: String,
+            required: true,
+            maxlength: 280,
+        },
+        username: {
+            type: String,
+            required: true,
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            get: (timestamp) => new Date(timestamp).toLocaleString(), //Use a getter method to format the timestamp on query.
+        },
+    },
+    {
+        toJSON: {
+            getters: true,
+        },
+        id: false,
+    }
+);
 
 const thoughtSchema = new Schema<IThought>(
     {
@@ -24,7 +53,7 @@ const thoughtSchema = new Schema<IThought>(
             type: String,
             required: true,
         },
-        //reactions: Array of nested documents created with the reactionSchema
+        reactions: [reactionSchema],
     },
     {
         toJSON: {
@@ -34,9 +63,10 @@ const thoughtSchema = new Schema<IThought>(
     },
 );
 
+
 thoughtSchema.virtual('reactionCount').get(function () {
     return this.reactions.length;
-});
+}); //Creates a virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
 
 const Thought = model<IThought>('Thought', thoughtSchema);
 
