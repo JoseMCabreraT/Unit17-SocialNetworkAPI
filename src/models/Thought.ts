@@ -25,7 +25,7 @@ const reactionSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,
-            get: (timestamp) => new Date(timestamp).toLocaleString(), //Use a getter method to format the timestamp on query.
+            get: (timestamp:number) => new Date(timestamp).toLocaleString(), //Use a getter method to format the timestamp on query.
         },
     },
     {
@@ -47,7 +47,7 @@ const thoughtSchema = new Schema<IThought>(
         createdAt: {
             type: Date,
             default: Date.now,
-            //Use a getter method to format the timestamp on query
+            get: (timestamp:number):any => new Date(timestamp).toLocaleString(), //Use a getter method to format the timestamp on query
         },
         username: {
             type: String,

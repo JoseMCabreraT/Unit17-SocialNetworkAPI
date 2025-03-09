@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ObjectId } from 'mongodb';
+//import { ObjectId } from 'mongodb';
 import { User, Thought } from '../models/index.js';
 
 
@@ -11,12 +11,7 @@ export const getAllUsers = async (_req: Request, res: Response) => {
     try {
         const users = await User.find();
 
-        const UserObj = {
-            users,
-            headCount: await headCount(), //Should I get rid off this?
-        }
-
-        res.json(UserObj);
+        res.json(users);
     } catch (error: any) {
         res.status(500).json({
             message: error.message
